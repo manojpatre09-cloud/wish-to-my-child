@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HBD | Special One</title>
+    <style>
+        :root { --primary: #ff4757; --accent: #ff6b81; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #000; color: white; overflow: hidden; }
+        
+        /* Background Styling */
+        .bg-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1513151233558-d860c5398176'); 
+            background-size: cover; z-index: -1; transition: 1s;
+        }
+
+        .container { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        
+        .page { display: none; opacity: 0; transform: translateY(20px); transition: 0.5s all ease; }
+        .active { display: block; opacity: 1; transform: translateY(0); }
+
+        .btn {
+            margin-top: 20px; padding: 12px 30px; border: none; border-radius: 25px;
+            background: var(--primary); color: white; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        /* Heart Rain */
+        .heart { position: fixed; top: -20px; color: var(--primary); font-size: 24px; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-layer" id="bg"></div>
+    <audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+    <div class="container">
+        <div id="p1" class="page active">
+            <h1>Ready for a Surprise? 🎁</h1>
+            <button class="btn" onclick="showPage(2)">Yes, Let's Go!</button>
+        </div>
+
+        <div id="p2" class="page">
+            <h1 id="name">Happy Birthday, Bestie (my sweet heart, mera bacha) ✨</h1>
+        
+            <p>"Engineering might be hard, but wishing you is the easiest thing!"</p>
+            <button class="btn" onclick="showPage(3); startCelebration();">Click for Magic ❤️</button>
+        </div>
+
+        <div id="p3" class="page">
+            <h1 style="font-size: 4rem;">🎂🎉🎈</h1>
+            <h2>always be happy and achive our goles<br> my first child</h2>
+            <p>Party due hai, yaad rakhna! 😉</p>
+        </div>
+    </div>
+
+    <script>
+        function showPage(num) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('p' + num).classList.add('active');
+            if(num === 2) document.getElementById('music').play();
+        }
+
+        function startCelebration() {
+            // Background change for the finale
+            document.getElementById('bg').style.backgroundImage = "url('YOUR_FRIEND_IMAGE_URL_HERE')";
+            
+            // Heart Rain Logic
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 200);
+        }
+    </script>
+</body>
+</html>
