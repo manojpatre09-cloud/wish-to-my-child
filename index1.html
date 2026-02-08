@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For My Special One ❤️</title>
+    <style>
+        :root { --primary: #ff4757; --soft-pink: #ffb8b8; }
+        body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: #000; color: white; overflow: hidden; }
+        
+        /* Background Layer */
+        #bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7'); /* Default BG */
+            background-size: cover; background-position: center; z-index: -1; transition: 1.5s ease-in-out;
+        }
+
+        .container { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
+        .page { display: none; width: 80%; max-width: 600px; animation: fadeIn 0.8s ease-in; }
+        .active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        h1 { font-size: 2.5rem; margin-bottom: 20px; color: var(--soft-pink); }
+        .letter-box { background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); line-height: 1.6; border: 1px solid rgba(255,255,255,0.2); }
+        
+        .btn {
+            margin-top: 25px; padding: 12px 35px; border: none; border-radius: 50px;
+            background: var(--primary); color: white; font-size: 1rem; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4); transition: 0.3s;
+        }
+        .btn:hover { background: #e84118; transform: translateY(-3px); }
+
+        /* Heart Rain */
+        .heart { position: fixed; top: -10%; font-size: 25px; animation: fall linear forwards; z-index: 100; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div id="bg"></div>
+<audio id="music" src="mtsoundscapes-tere-bina-emotional-hindi-love-song-heartfelt-lyrics-264278"></audio>
+
+<div class="container">
+    <div id="p1" class="page active">
+        <h1>Hey Gorgeous! ✨</h1>
+        <p>Aaj tumhara birthday hai, tumhara first gift...</p>
+        <button class="btn" onclick="nextPage(2); playMusic()">Suno Isse! 🎵</button>
+    </div>
+
+    <div id="p2" class="page">
+        <h1>Happy Birthday! 🎂</h1>
+        <p>Engineering ke assignments ke beech mein tum hi meri sukoon ho.</p>
+        <button class="btn" onclick="nextPage(3)">Aage Chalein? 👉</button>
+    </div>
+
+    <div id="p3" class="page">
+        <h1>Hamari Yaadein 📸</h1>
+        <p>Pichla saal tumhare saath kitna amazing tha na? Har pal ek gift tha.</p>
+        <button class="btn" onclick="nextPage(4)">Ek Baat Bolu? 🙊</button>
+    </div>
+
+    <div id="p4" class="page">
+        <h1>My Heart to Yours ❤️</h1>
+        <div class="letter-box">
+            "Tum meri duniya ka sabse khoobsurat hissa ho. Tumhari muskurahat meri energy hai. Main waada karta hoon ki hamesha tumhara saath nibhaunga..."<br>
+            <b>(firstly happy birthday , jab se tum aai ho life me life bilkul mst ho gai h yrr<br> mai chahunga tum hamesha mere sath rho)</b>
+        </div>
+        <button class="btn" onclick="nextPage(5)">Abhi Khatam Nahi Hua!</button>
+    </div>
+
+    <div id="p5" class="page">
+        <h1>One Last Thing... 💍</h1>
+        <p>Main hamesha tumhein khush rakhne ki koshish karunga. Happy Birthday once again!</p>
+        <button class="btn" onclick="nextPage(6); startCelebration();">MAGIC DEKHO! ✨</button>
+    </div>
+
+    <div id="p6" class="page">
+        <h1 style="font-size: 3.5rem;">I Love You! ❤️</h1>
+        <p>Tum sabse best ho!</p>
+        <div style="font-size: 60px;">🎈🎁🌹</div>
+        <button class="btn" onclick="location.reload()">Reset Everything</button>
+    </div>
+</div>
+
+<script>
+    function nextPage(n) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('p' + n).classList.add('active');
+    }
+
+    function playMusic() {
+        document.getElementById('music').play();
+    }
+
+    function startCelebration() {
+        // --- PHOTO CHANGE YAHAN HOGI ---
+        const bg = document.getElementById('bg');
+        bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1518199266791-5375a83190b7')"; // Replace with her Direct Image Link
+        bg.style.filter = "none"; // Clearing the dark filter for the last page
+        
+        // Heart Rain Logic
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['❤️','💖','🌸','✨'][Math.floor(Math.random()*4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 150);
+    }
+</script>
+
+</body>
+</html>
